@@ -4,9 +4,17 @@ mod sudoku_main;
 use crate::sudoku_main::SudokuRoot;
 use crate::sudoku_main::text_to_map;
 
-fn print_vec (vec: Vec<u8>) {
+fn print_vec (vec: Vec<u32>) {
+    let mut counter = 1;
     for i in &vec {
-        println!("{}", i);
+        if counter % 9 == 0 {
+            println!("{} ", i);
+            counter += 1;
+        } 
+        else {
+            print!("{} ", i);
+            counter += 1;
+        }
     }
 }
 
@@ -18,9 +26,6 @@ fn main() {
         map: v,
     };
     text_to_map(&mut sudoku_instance, &contents);
-
-    let is_empty_1 = sudoku_instance.map.is_empty();
-    println!("{}", is_empty_1);
 
     print_vec(sudoku_instance.map);
 }
